@@ -23,20 +23,8 @@ jobs:
       - name: Deploy createOrder
         run: |
           cd lambdas
-
-          zip -r createOrder.zip cmtr_9muunkkm_lambda_createOrder
-
-          echo "=== ZIP CONTENT ==="
-          unzip -l createOrder.zip
-
-          aws lambda update-function-code \
-            --function-name cmtr_9muunkkm_lambda_createOrder \
-            --zip-file fileb://createOrder.zip
-
-      - name: Deploy createOrder
-        run: |
-          cd lambdas
           zip -r /tmp/createOrder.zip cmtr_9muunkkm_lambda_createOrder
+          unzip -l /tmp/createOrder.zip
 
           aws lambda update-function-code \
             --function-name cmtr_9muunkkm_lambda_createOrder \
@@ -46,6 +34,7 @@ jobs:
         run: |
           cd lambdas
           zip -r /tmp/reserveStock.zip cmtr_9muunkkm_lambda_reserveStock
+          unzip -l /tmp/reserveStock.zip
 
           aws lambda update-function-code \
             --function-name cmtr_9muunkkm_lambda_reserveStock \
@@ -55,6 +44,7 @@ jobs:
         run: |
           cd lambdas
           zip -r /tmp/sendNotification.zip cmtr_9muunkkm_lambda_sendNotification
+          unzip -l /tmp/sendNotification.zip
 
           aws lambda update-function-code \
             --function-name cmtr_9muunkkm_lambda_sendNotification \
