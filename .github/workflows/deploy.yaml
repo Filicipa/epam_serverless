@@ -23,6 +23,19 @@ jobs:
       - name: Deploy createOrder
         run: |
           cd lambdas
+
+          zip -r createOrder.zip cmtr_9muunkkm_lambda_createOrder
+
+          echo "=== ZIP CONTENT ==="
+          unzip -l createOrder.zip
+
+          aws lambda update-function-code \
+            --function-name cmtr_9muunkkm_lambda_createOrder \
+            --zip-file fileb://createOrder.zip
+
+      - name: Deploy createOrder
+        run: |
+          cd lambdas
           zip -r /tmp/createOrder.zip cmtr_9muunkkm_lambda_createOrder
 
           aws lambda update-function-code \
